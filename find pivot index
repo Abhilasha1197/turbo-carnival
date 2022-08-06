@@ -1,0 +1,30 @@
+class Solution {
+public int pivotIndex(int[] nums) {
+    
+    int sum = 0;
+    
+    // first calculate the totalsum of the array
+    for(int i = 0;i<nums.length;i++)
+    {
+        sum += nums[i];
+    }
+    
+    // This loop will check if leftsum is equals to right sum
+    // if not increment the leftsum and decrement the totalsum
+    int leftsum = 0;
+    for(int i = 0;i<nums.length;i++)
+    {
+        if(leftsum == (sum - nums[i]))
+        {
+            return i;
+        }
+        else
+        {
+            leftsum += nums[i];
+            sum -= nums[i];
+        }
+    }
+    
+    return -1;
+}
+}
