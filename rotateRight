@@ -1,0 +1,25 @@
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		int arr[]= {1,2,4,5,7};
+		int n= arr.length;
+		int k= 2;
+		rotateright(arr,n,k);
+		printarr(arr,n);
+	}
+	static void rotateright(int arr[],int n,int k){
+	    k= k%n;
+	    rotate(arr,0,n-k-1);
+	    rotate(arr,n-k,n-1);
+	    rotate(arr,0,n-1);
+	}
+	static void rotate(int arr[],int s,int e){
+	    while(s<e){
+	        int temp= arr[s];
+	        arr[s]=arr[e];
+	        arr[e]=temp;
+	        s++;
+	        e--;
+	  }
+	}
