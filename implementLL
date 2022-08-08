@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.LinkedList;
+
+class GFG {
+	public static void main (String[] args) {
+		llnode head = takeInput();
+		print(head);
+	}
+	static class llnode{
+	    int data ;
+	    llnode next;
+	    
+	    llnode(int data){
+	        this.data=data;
+	    }
+	}
+	public static llnode takeInput(){
+	Scanner s= new Scanner(System.in);
+	int data =s.nextInt();
+	llnode head= null;
+	llnode tail= null;
+	while(data!=0){
+	   llnode newNode= new llnode(data);
+	   if(head==null){
+	       head= newNode;
+	   }else{
+	       tail.next=newNode;
+	   }
+	   tail= newNode;
+	   data= s.nextInt();
+	}
+	return head;
+   }
+   public static void print(llnode head){
+       llnode temp= head;
+       while(temp!=null){
+           System.out.print(temp.data+"->");
+           temp=temp.next;
+       }
+       System.out.println();
+    }
+}
+	
