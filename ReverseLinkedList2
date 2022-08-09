@@ -1,0 +1,62 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.Scanner;
+class GFG {
+	public static void main (String[] args) {
+		llnode head = takeInput();
+		 print(head);
+		 llnode newhead = reversell(head);
+		 print(newhead);
+	}
+	static class llnode{
+	    int data;
+	    llnode next;
+	    
+	    llnode(int data){
+	        this.data=data;
+	    }
+	}
+	public static llnode takeInput(){
+	Scanner sc = new Scanner(System.in);
+	int data = sc.nextInt();
+	llnode head = null;
+	llnode tail = null;
+	
+	while(data!=0){
+	    llnode newNode = new llnode(data);
+	    if(head==null){
+	         head= newNode;
+	    }else{
+	        tail.next= newNode;
+	    }
+	    tail= newNode;
+	    data =sc.nextInt();
+	}
+	return head;
+}
+public static void print(llnode head){
+    llnode temp = head;
+    while(temp!=null){
+       
+        System.out.print(temp.data+"->");
+        temp= temp.next;
+    }
+    System.out.println();
+}
+public static llnode reversell(llnode head){
+    if(head==null || head.next==null){
+        return head;
+    }
+    llnode prev = null;
+    llnode curr= head;
+    while(curr!=null){
+        llnode next = curr.next;
+        curr.next= prev;
+        prev = curr;
+        curr = next;
+    }
+    head.next= reversell(curr);
+    return prev;
+    }
+}
