@@ -1,0 +1,84 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.Scanner;
+class GFG {
+	public static void main (String[] args) {
+		llnode head = takeInput();
+		print(head);
+		llnode newhead1 = insert(head,20,0);
+        print(newhead1);
+        llnode newhead2 = insert(head,40,3);
+        print(newhead2);
+	}
+	static class llnode{
+	    int data;
+	    llnode next;
+	    
+	    llnode(int data){
+	        this.data = data;
+	    }
+	}
+	public static llnode takeInput(){
+	    Scanner sc = new Scanner(System.in);
+	    int data = sc.nextInt();
+	    llnode head = null;
+	    llnode tail = null;
+	    while(data!=0){
+	        llnode newNode = new llnode(data);
+	        if(head==null){
+	            head = newNode;
+	        }else{
+	            tail.next = newNode;
+	        }
+	        tail = newNode;
+	        data = sc.nextInt();
+	    }
+	    return head;
+	}
+	public static void print(llnode head){
+	    llnode temp = head;
+	    while(temp!=null){
+	        System.out.print(temp.data+"->");
+	        temp = temp.next;
+	    }
+	    System.out.println();
+	}
+	 static llnode insert(llnode head,int el,int ind){
+	    int len = getLength(head);
+	    
+	    if(ind>=len){
+	        return head;
+	    }
+	    if(ind==0){
+	        llnode newNode = new llnode(el);
+	        newNode.next = head;
+	        head = newNode;
+	    
+	      return head;
+	    }  
+	   if(ind==3){
+	       llnode newNode = new llnode(el);
+	       llnode prevNode = head;
+	       int i=0;
+	       while(i<ind-1){
+	           prevNode = prevNode.next;
+	           i++;
+	       }
+	       llnode nextnode = prevNode.next;
+	       prevNode.next = newNode;
+	       newNode.next = nextnode;
+	   }
+	   return head;
+	}
+	 
+	public static int getLength(llnode head){
+	    llnode temp = head;
+	    int count =0;
+	    while(temp!=null){
+	        temp=temp.next;
+	        count++;
+	    }
+	    return count;
+	}
+}
