@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.HashMap;
+
+class GFG {
+	public static void main (String[] args) {
+		int arr[]={ 1,2,3,4,5,7,7};
+		int n= arr.length;
+		int k=2;
+		checkfreq(arr,n,k);
+	}
+	public static void checkfreq(int arr[],int n,int k){
+	    HashMap<Integer,Integer>freMap=new HashMap<>();
+	    for(int i=0;i<n;i++){
+	        int curr= arr[i];
+	        if(freMap.containsKey(curr)){
+	            int freq = freMap.get(curr);
+	            freq = freq+1;
+	            freMap.put(curr,freq);
+	        }else{
+	            freMap.put(curr,1);
+	        }
+	    }
+	    for(int i=0;i<n;i++){
+	        if(freMap.containsKey(arr[i]) && (freMap.get(arr[i])==k)){
+	            System.out.print(arr[i]);
+	            freMap.remove(arr[i]);
+	        }
+	    }
+	}
+}
+
+
+output-> 7
